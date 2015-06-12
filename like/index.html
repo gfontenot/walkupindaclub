@@ -1,10 +1,29 @@
 <html>
 <head>
   <title>WALK UP IN DA CLUB LIKE</title>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script>
+function getImageList() {
+  $.getJSON("https://api.github.com/repos/gfontenot/walkupindaclub/contents/images?ref=gh-pages").then( function(data) {
+      var images = data.map( function (datum) {
+        return datum.download_url;
+        });
+      var image = images[getRandomInt(0, images.length - 1)];
+
+      $('img').attr('src', image);
+      });
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+window.onload = getImageList;
+  </script>
 </head>
 <body>
   <center>
-    <img src="walkin.gif">
+    <img/>
   </center>
 </body>
 </html>
